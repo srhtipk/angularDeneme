@@ -1,0 +1,26 @@
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Aranacak ürün:</label>
+    <input type="text" class="form-control" id="filterText" [(ngModel)]="filterText"
+        placeholder="Aranacak ürün giriniz...">
+</div>
+<div *ngIf="filterText.length>2" class="alet alert-primary">
+    {{filterText}} aranıyor...
+</div>
+<table class="table table-striped table-hover table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>User id:</th>
+            <th>Id:</th>
+            <th>Title:</th>
+            <th>Completed:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todo of todos | filterPipe:filterText">
+            <td>{{todo.userId}}</td>
+            <td>{{todo.id}}</td>
+            <td>{{todo.title | titlecase }}</td>
+            <td>{{todo.completed}}</td>
+        </tr>
+    </tbody>
+</table>
